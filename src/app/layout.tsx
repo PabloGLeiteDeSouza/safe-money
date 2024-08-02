@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import App from "./app";
+import ButtonToggleTheme from "@/components/Buttons/Theme/Toggle";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,6 +21,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <App>
           {children}
+          <ButtonToggleTheme/>
         </App>
       </body>
     </html>

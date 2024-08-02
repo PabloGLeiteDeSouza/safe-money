@@ -14,9 +14,9 @@ export const ThemeProvider: React.FC<IThemeProviderProps> = ({defaultTheme, chil
 
     const setTheme = React.useCallback((theme: string) => {
         localStorage.setItem(storage_key, theme);
-        document.documentElement.setAttribute(storage_key, theme);
+        document.documentElement.setAttribute(document_key, theme);
         changeTheme(theme);
-    },[storage_key])
+    },[storage_key, document_key])
 
     const toggleTheme = () => setTheme(theme === "light" ? "dark" : "light");
 

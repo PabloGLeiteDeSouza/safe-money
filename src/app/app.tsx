@@ -1,30 +1,18 @@
+"use client"
 import { ThemeProvider } from "@providers/theme";
-import { NextPage } from "next";
-import { Session } from "next-auth";
 import { SessionProvider } from "next-auth/react"; // Corrigido: importação do SessionProvider
-import { AppProps } from "next/app";
-import { ReactElement, ReactNode } from "react";
 
-export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
-  getLayout?: (page: ReactElement) => ReactNode;
-};
-
-export type AppPropsWithLayout = AppProps & {
-  Component: NextPageWithLayout;
-  pageProps: {
-    session: Session | null;
-    pageProps: any;
-  };
+export type AppPropsWithLayout = {
+  children: React.ReactNode;
 };
 
 const App: React.FC<AppPropsWithLayout> = ({
-  Component,
-  pageProps: { session, ...pageProps },
+  children,
 }) => {
   return (
-    <SessionProvider session={session}>
+    <SessionProvider>
       <ThemeProvider>
-        <Component {...pageProps} />
+        {children}
       </ThemeProvider>
     </SessionProvider>
   );
